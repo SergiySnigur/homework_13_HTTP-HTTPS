@@ -1,8 +1,7 @@
-package exercise_2;
+package exerciseTwo;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-
 import java.io.FileWriter;
 import java.io.IOException;
 import java.net.URI;
@@ -14,7 +13,7 @@ import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class CommentsGetter {
+public class CommentsFinder {
     HttpClient client = HttpClient.newHttpClient();
 
     public void createJsonWithAllCommentsFromLastPostByUserId(int userId) throws IOException, InterruptedException {
@@ -67,7 +66,7 @@ public class CommentsGetter {
     }
 
     private void createJsonWithComments(String str, String jsonFilePath) {
-        CommentJPH[] comments = createCommentsFromJson(str);
+        Comment[] comments = createCommentsFromJson(str);
         Gson gson = new GsonBuilder().setPrettyPrinting().create();
         String outputString = gson.toJson(comments);
         try (FileWriter output = new FileWriter(jsonFilePath)) {
@@ -77,35 +76,9 @@ public class CommentsGetter {
         }
     }
 
-    private  CommentJPH[] createCommentsFromJson(String json) {
+    private  Comment[] createCommentsFromJson(String json) {
         Gson gson = new GsonBuilder().setPrettyPrinting().create();
-        return gson.fromJson(json, CommentJPH[].class);
+        return gson.fromJson(json, Comment[].class);
     }
 
-    class CommentJPH {
-        String postId;
-        int id;
-        String name;
-        String email;
-        String body;
-
-        public CommentJPH(String postId, int id, String name, String email, String body) {
-            this.postId = postId;
-            this.id = id;
-            this.name = name;
-            this.email = email;
-            this.body = body;
-        }
-
-        @Override
-        public String toString() {
-            return "CommentJPH{" +
-                    "postId='" + postId + '\'' +
-                    ", id=" + id +
-                    ", name='" + name + '\'' +
-                    ", email='" + email + '\'' +
-                    ", body='" + body + '\'' +
-                    '}';
-        }
-    }
 }

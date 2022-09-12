@@ -1,6 +1,7 @@
-package exercise_1;
+package exerciseOne;
 
 import com.google.gson.Gson;
+import exerciseOne.user.User;
 import org.jsoup.Jsoup;
 
 import java.io.IOException;

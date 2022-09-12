@@ -1,10 +1,10 @@
-package exercise_2;
+package exerciseTwo;
 
 import java.io.IOException;
 
-public class CommentsGetterTests {
+public class CommentsFinderTests {
     public static void main(String[] args) throws IOException, InterruptedException {
-        CommentsGetter comments = new CommentsGetter();
+        CommentsFinder comments = new CommentsFinder();
         int userId = 1;
         comments.createJsonWithAllCommentsFromLastPostByUserId(userId);
     }
